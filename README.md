@@ -46,12 +46,15 @@ npm run build
 ## TODO
 
 - [ ] Make analysis independent of project Java version
+
   プロジェクトのJAVAバージョンに依存しない設計にする
 
 - [ ] Add UI for configuring colors by node/edge type
+
   ノード・エッジ種別ごとの色設定UIの追加
 
 - [ ] Add JavaScript support (implement JavaScriptAnalyzer)
+
   JavaScriptへの対応(JavaScriptAnalyzerの実装)
 
 
