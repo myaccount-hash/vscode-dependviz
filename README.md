@@ -4,7 +4,10 @@ VS Code extension to visualize code dependencies as a force-directed graph.
 
 Javaコードベースの依存関係を力学レイアウトで可視化するVS Code拡張機能です。
 
+Marketplace: https://marketplace.visualstudio.com/items?itemName=myaccount-hash.vscode-force-graph-viewer
+
 ![DependViz](images/DependViz.png)
+
 
 ## Features
 
