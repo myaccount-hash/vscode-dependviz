@@ -1,0 +1,38 @@
+ARCHITECTURE.md
+graph.json
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# VS Code Extension
+*.vsix
+.vscode-test/
+
+# Java
+*.jar
+
+# Build artifacts
+java/target/
+java/dependency-reduced-pom.xml
+
+# IDE
+.vscode/*
+!.vscode/launch.json
+!.vscode/dependviz/
+!.vscode/dependviz/analyzer.json
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated files
+graph.json
+data/
+webview/dist/

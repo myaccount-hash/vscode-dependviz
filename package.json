@@ -1,0 +1,281 @@
+{
+  "name": "vscode-force-graph-viewer",
+  "displayName": "DependViz",
+  "description": "2D force graph visualization for code dependency analysis",
+  "version": "1.0.4",
+  "publisher": "myaccount-hash",
+  "license": "MIT",
+  "icon": "images/force-graph.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/myaccount-hash/DependViz.git"
+  },
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Visualization",
+    "Other"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "forceGraphViewer",
+          "title": "DependViz",
+          "icon": "images/force-graph.svg"
+        }
+      ]
+    },
+    "views": {
+      "forceGraphViewer": [
+        {
+          "id": "forceGraphViewer.settings",
+          "name": "設定",
+          "icon": "$(settings-gear)"
+        },
+        {
+          "id": "forceGraphViewer.filters",
+          "name": "フィルタ",
+          "icon": "$(filter)"
+        },
+        {
+          "id": "forceGraphViewer.sidebar",
+          "name": "グラフビュー",
+          "type": "webview",
+          "icon": "$(graph)"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "forceGraphViewer.refresh",
+        "title": "Refresh",
+        "category": "DependViz",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "forceGraphViewer.showSearchInput",
+        "title": "検索",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.toggleCheckbox",
+        "title": "Toggle",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.selectAnalyzer",
+        "title": "Select Analyzer",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.showSliderInput",
+        "title": "Adjust",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.clearFocus",
+        "title": "Clear Focus",
+        "category": "DependViz",
+        "icon": "$(close)"
+      },
+      {
+        "command": "forceGraphViewer.analyzeProject",
+        "title": "Analyze Project",
+        "category": "DependViz",
+        "icon": "$(play)"
+      },
+      {
+        "command": "forceGraphViewer.analyzeCurrentFile",
+        "title": "Analyze Current Java File",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.forwardSlice",
+        "title": "Forward Slice",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.backwardSlice",
+        "title": "Backward Slice",
+        "category": "DependViz"
+      },
+      {
+        "command": "forceGraphViewer.clearSlice",
+        "title": "Clear Slice",
+        "category": "DependViz"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "forceGraphViewer.refresh",
+          "when": "view == forceGraphViewer.sidebar",
+          "group": "navigation@1"
+        },
+        {
+          "command": "forceGraphViewer.analyzeProject",
+          "when": "view == forceGraphViewer.sidebar",
+          "group": "navigation@2"
+        },
+        {
+          "command": "forceGraphViewer.clearFocus",
+          "when": "view == forceGraphViewer.sidebar",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "DependViz",
+      "properties": {
+        "forceGraphViewer.search": {
+          "type": "string",
+          "default": "",
+          "description": "検索キーワード"
+        },
+        "forceGraphViewer.analyzerId": {
+          "type": "string",
+          "default": "java",
+          "description": "使用するアナライザー (java / javascript など)"
+        },
+        "forceGraphViewer.is3DMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "3Dモードを有効化"
+        },
+        "forceGraphViewer.nodeSizeByLoc": {
+          "type": "boolean",
+          "default": false,
+          "description": "ノードサイズをLOCで決定"
+        },
+        "forceGraphViewer.enableForceLayout": {
+          "type": "boolean",
+          "default": true,
+          "description": "力学レイアウトを有効化"
+        },
+        "forceGraphViewer.hideIsolatedNodes": {
+          "type": "boolean",
+          "default": false,
+          "description": "孤立ノードを非表示"
+        },
+        "forceGraphViewer.showNames": {
+          "type": "boolean",
+          "default": true,
+          "description": "名前を表示"
+        },
+        "forceGraphViewer.shortNames": {
+          "type": "boolean",
+          "default": true,
+          "description": "短縮名を表示"
+        },
+        "forceGraphViewer.nodeSize": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0.1,
+          "maximum": 5,
+          "description": "ノードサイズ"
+        },
+        "forceGraphViewer.linkWidth": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0.1,
+          "maximum": 5,
+          "description": "リンク幅"
+        },
+        "forceGraphViewer.nodeOpacity": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "ノード透明度"
+        },
+        "forceGraphViewer.edgeOpacity": {
+          "type": "number",
+          "default": 1,
+          "minimum": 0,
+          "maximum": 2,
+          "description": "エッジ透明度"
+        },
+        "forceGraphViewer.dimOpacity": {
+          "type": "number",
+          "default": 0.2,
+          "minimum": 0.05,
+          "maximum": 1,
+          "description": "フォーカスしていない要素の減光率"
+        },
+        "forceGraphViewer.linkDistance": {
+          "type": "number",
+          "default": 30,
+          "minimum": 10,
+          "maximum": 100,
+          "description": "リンク距離"
+        },
+        "forceGraphViewer.focusDistance": {
+          "type": "number",
+          "default": 120,
+          "minimum": 20,
+          "maximum": 300,
+          "description": "フォーカス時のカメラ距離（3D）"
+        },
+        "forceGraphViewer.arrowSize": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "maximum": 20,
+          "description": "矢印サイズ"
+        },
+        "forceGraphViewer.textSize": {
+          "type": "number",
+          "default": 12,
+          "minimum": 8,
+          "maximum": 24,
+          "description": "テキストサイズ"
+        },
+        "forceGraphViewer.sliceDepth": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 10,
+          "description": "スライス深度"
+        },
+        "forceGraphViewer.enableForwardSlice": {
+          "type": "boolean",
+          "default": true,
+          "description": "順方向スライスを有効化"
+        },
+        "forceGraphViewer.enableBackwardSlice": {
+          "type": "boolean",
+          "default": true,
+          "description": "逆方向スライスを有効化"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run build:java && npm run build:extension",
+    "build:java": "cd java && mvn clean package",
+    "build:extension": "npm install && npm run build:webview",
+    "build:webview": "npm --prefix webview install && npm --prefix webview run build",
+    "clean": "cd java && mvn clean && rm -f dependency-reduced-pom.xml",
+    "lint:extension": "eslint \"src/**/*.js\"",
+    "lint:webview": "npm --prefix webview run lint",
+    "lint": "npm run lint:extension && npm run lint:webview",
+    "lint:fix:extension": "eslint \"src/**/*.js\" --fix",
+    "lint:fix:webview": "npm --prefix webview run lint:fix",
+    "lint:fix": "npm run lint:fix:extension && npm run lint:fix:webview"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.28.5",
+    "@babel/traverse": "^7.28.5",
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.0",
+    "eslint": "^8.57.0",
+    "mocha": "^10.0.0",
+    "sinon": "^21.0.0"
+  },
+  "enableTelemetry": false
+}
