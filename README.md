@@ -21,11 +21,13 @@ Marketplace: https://marketplace.visualstudio.com/items?itemName=myaccount-hash.
 ## Usage
 
 1. Open a project in VS Code.
+
    VS Codeでプロジェクトを開く
 2. Open the graph view in the Activity Bar.
 
    グラフビューをアクティビティバーで開く
 3. Press the play button in the top-right of the graph view to run the analysis.
+
    グラフビュー右上の再生ボタンを押すことで解析を実行．
 
 ## Development
@@ -40,6 +42,18 @@ Build:
 ```bash
 npm run build
 ```
+
+## TODO
+
+- [ ] Make analysis independent of project Java version
+  プロジェクトのJAVAバージョンに依存しない設計にする
+
+- [ ] Add UI for configuring colors by node/edge type
+  ノード・エッジ種別ごとの色設定UIの追加
+
+- [ ] Add JavaScript support (implement JavaScriptAnalyzer)
+  JavaScriptへの対応(JavaScriptAnalyzerの実装)
+
 
 ## License
 
